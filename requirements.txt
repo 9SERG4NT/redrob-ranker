@@ -1,0 +1,8 @@
+# Core ranking dependencies. CPU-only, no network at inference.
+numpy>=1.24
+scikit-learn>=1.3
+# Optional but recommended: faster JSONL parsing. The loader falls back to the
+# stdlib json module automatically if orjson is not installed.
+orjson>=3.9
+# Only needed for the hosted sandbox demo (app.py). Not required by rank.py.
+streamlit>=1.30
