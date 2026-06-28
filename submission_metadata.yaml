@@ -1,0 +1,83 @@
+# Redrob Hackathon — Submission Metadata
+# Mirrors the portal metadata. Fill in the TODO identity fields before submitting.
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "TODO-your-team-name"
+
+primary_contact:
+  name: "TODO Full Name"
+  email: "dearsumukh@gmail.com"
+  phone: "+91-XXXXXXXXXX"
+
+team_members:
+  - name: "TODO Member 1"
+    email: "dearsumukh@gmail.com"
+    role: "ML Engineer"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/TODO_USERNAME/redrob-ranker"
+sandbox_link: "https://huggingface.co/spaces/TODO_USERNAME/redrob-ranker"
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local Windows 11 box"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.12"
+  os: "Windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+# ============================================================================
+# AI tools declaration  (transparency only — not penalised)
+# ============================================================================
+ai_tools_used:
+  - "Claude"
+
+ai_usage_summary: |
+  Used Claude (Claude Code) for dataset exploration, architectural discussion,
+  and code review while building the ranker. All scoring logic, lexicons, weights,
+  honeypot heuristics, and the hybrid design were authored and tuned by the team
+  against the released pool. No candidate data was sent to any hosted LLM, and the
+  ranking step itself makes no LLM/API calls.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  Transparent hybrid ranker. An additive base score combines seven components in
+  [0,1] — role/title relevance, trust-weighted skill coverage, a narrative signal
+  (career-prose lexicon + TF-IDF cosine to the JD), product-vs-services pedigree,
+  a soft 5–9y experience band, India-Tier-1 location, and education — then is
+  multiplied by a behavioral-availability modifier (recruiter response rate,
+  recency, open-to-work, interview completion) and a set of hard gates.
+
+  The role component is the decisive defence against keyword-stuffers: an
+  off-target title (Marketing Manager, HR) is gated to ~0 regardless of its skill
+  list. A proficiency × duration × endorsement × on-platform-assessment trust
+  multiplier collapses lazily-stuffed skills. Buzzwords and their plain-language
+  equivalents map to the same competency buckets, and the narrative signal recovers
+  strong "Tier-5" candidates who avoid buzzwords entirely. JD disqualifiers
+  (services-only careers, pure research without production, CV/speech without
+  NLP/IR, title-chasing) apply multiplicative penalties, and an internal-consistency
+  detector crushes the ~80 honeypots to the bottom (top-100 honeypot rate: 0).
+  Runs in ~60s on CPU for 100K candidates.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
