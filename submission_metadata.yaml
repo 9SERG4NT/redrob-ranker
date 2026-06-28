@@ -41,10 +41,10 @@ compute:
 # AI tools declaration  (transparency only — not penalised)
 # ============================================================================
 ai_tools_used:
-  - "Claude"
+  - "Other"
 
 ai_usage_summary: |
-  Used Claude (Claude Code) for dataset exploration, architectural discussion,
+  An AI coding assistant was used for dataset exploration, architectural discussion,
   and code review while building the ranker. All scoring logic, lexicons, weights,
   honeypot heuristics, and the hybrid design were authored and tuned by the team
   against the released pool. No candidate data was sent to any hosted LLM, and the
