@@ -97,6 +97,7 @@ auditable file: [`redrob_ranker/config.py`](redrob_ranker/config.py).
 ```
 rank.py                     CLI entry point (the reproduce command)
 build_dashboard.py          generates the interactive dashboard.html
+export_xlsx.py              exports the ranking to a formatted .xlsx for review
 redrob_ranker/
   config.py                 JD query, lexicons, company lists, weights  (all knobs)
   loader.py                 streaming JSONL / gzip reader (orjson if available)
@@ -130,6 +131,9 @@ python validate_submission.py submission.csv
 
 # Build the interactive dashboard:
 python build_dashboard.py --candidates ./candidates.jsonl --out ./dashboard.html
+
+# Export a formatted Excel version of the ranking (for review — submit the CSV):
+python export_xlsx.py --csv ./submission.csv --candidates ./candidates.jsonl --out ./submission.xlsx
 
 # Run the tests:
 python -m pytest tests/ -q
